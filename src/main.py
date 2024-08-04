@@ -98,6 +98,14 @@ def test_neptune():
     
     tt.in5.pwm(0) # disable pwm
 
+def test_prg():
+    tt.shuttle.tt_um_prg.enable()
+    for i in range(98,4,5,248,149):
+        tt.in5.pwm(i)
+        time.sleep_ms(1000)
+        print(f'Input = {i}, outputs are {hex(tt.output_byte)}')
+    
+    tt.in5.pwm(0) # disable pwm
 
 # check if this is the first boot, if so, 
 # handle that
