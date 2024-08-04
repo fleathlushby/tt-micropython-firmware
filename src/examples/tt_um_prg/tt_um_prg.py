@@ -41,15 +41,14 @@ def run(loops:int=2, note_delay_ms:int=2000):
         # input byte
         # clock speed is lower bits, input comes on in5
         # display mode single/control are bits 6 and 7
-        tt.input_byte = 0b11001000
+        tt.input_byte = 0x62
         
         # with these settings (input bits) the system expects 
-        # a 4kHz clock, enable that
-        tt.clock_project_PWM(10000000)
+        # a 50MHz clock, enable that
+        tt.clock_project_PWM(50e6)
         
-        # we want to read the bidir pins, make sure they're 
-        # all inputs:
-        tt.bidir_mode = [Pins.IN]*8
+        # bidirectional pins are outputs
+        tt.bidir_mode = [Pins.OUT]*8
         
     # actually enable the project
     tt.shuttle.tt_um_prg.enable()
