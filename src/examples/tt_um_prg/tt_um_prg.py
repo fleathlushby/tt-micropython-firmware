@@ -41,11 +41,15 @@ def run(loops:int=2, note_delay_ms:int=2000):
         # input byte
         # clock speed is lower bits, input comes on in5
         # display mode single/control are bits 6 and 7
-        tt.input_byte = 0x62
+        tt.input_byte = 0b11001000
         
         # with these settings (input bits) the system expects 
         # a 50MHz clock, enable that
         tt.clock_project_PWM(50e6)
+
+        input1 = [0x62, 0x04, 0x05, 0xf8, 0x95]
+        input2 = [0x9b, 0x04, 0x05, 0xf8, 0x95]
+        input3 = [0x77, 0x04, 0x05, 0xf8, 0x95]
         
         # bidirectional pins are outputs
         tt.bidir_mode = [Pins.OUT]*8
